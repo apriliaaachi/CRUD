@@ -13,7 +13,6 @@ import java.util.List;
 @Repository
 public interface UserDao extends CrudRepository<User, Integer> {
     List<User> findByStatus(String status);
-    //Page<User> findByStatus(String status, Pageable pageable);
-    //List<User> findByStatus(String status, Pageable pageable);
+    Page<User> findByStatus(String status, Pageable pageable);
     long countByName(String name);
 }

@@ -34,18 +34,18 @@ public class CrudController {
     @GetMapping("/home1")
     public ModelAndView homeWithJoinTable() {
         ModelAndView mv = new ModelAndView("home1");
-//        List<Selling> selling = (List<Selling>) sellingDao.findByUserIdAndActive();
-//        mv.addObject("selling", selling);
+        List<Selling> selling = (List<Selling>) sellingDao.findByUserIdAndActive();
+        mv.addObject("selling", selling);
         return mv;
     }
 
-//    @GetMapping("/home2")
-//    public ModelAndView homeWithPagination() {
-//        ModelAndView mv = new ModelAndView("home2");
-//        List<User> users = userDao.findByStatus("ACTIVE", (Pageable) PageRequest.of(1, 20));
-//        mv.addObject("users", users);
-//        return mv;
-//    }
+    @GetMapping("/home2")
+    public ModelAndView homeWithPagination() {
+        ModelAndView mv = new ModelAndView("home2");
+        Page<User> users = userDao.findByStatus("ACTIVE", (Pageable) PageRequest.of(1, 20));
+        mv.addObject("users", users);
+        return mv;
+    }
 
     @GetMapping("/addUser")
     public String addUser(User user) {
