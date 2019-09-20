@@ -1,7 +1,6 @@
 package id.co.bri.dce.CRUD;
 
-import id.co.bri.dce.CRUD.entity.User;
-import id.co.bri.dce.CRUD.repository.DataDao;
+import id.co.bri.dce.CRUD.repository.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -9,9 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CrudApplication implements CommandLineRunner {
-
-	@Autowired
-	DataDao dataDao;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CrudApplication.class, args);

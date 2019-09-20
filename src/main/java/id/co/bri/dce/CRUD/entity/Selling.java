@@ -10,12 +10,15 @@ import javax.persistence.*;
 @Setter
 @Getter
 @ToString
-public class User {
+public class Selling {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private Integer id;
-    private String name;
-    private String email;
-    private String address;
+    private int id;
+    private int idbook;
+    private int iduser;
+    private String date;
+    private long amount;
     private String status;
+
+
 }
