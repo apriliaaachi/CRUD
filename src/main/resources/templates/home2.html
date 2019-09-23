@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 <body>
-
-<div th:switch="${users}">
-    <h2 th:case="null">No users yet!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.address}"></td>
-                <td><a th:href="@{/editUser/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
-        <ul class="nav nav-pills">
-            <li class="nav-item" th:each="i : ${numbers.sequence(0, users.totalPages-1)}">
-                <a th:href="@{/home(users=${i},size=${users.size})}" th:text="${i}" class="nav-link"></a>
-            </li>
-        </ul>
+    <div th:switch="${publishers}" class="container">
+        <h2>Publishers</h2>
+        <div class="pull-right">
+            <a href="/add" class="btn btn-success" style="background-color: #07294e"><i class="fa fa-plus"></i> ADD </a>
+        </div>
+        <div th:case="*">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Address</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="publisher : ${publishers}">
+                    <td th:text="${publisher.name}"></td>
+                    <td th:text="${publisher.email}"></td>
+                    <td th:text="${publisher.address}"></td>
+                    <td><a th:href="@{/edit/{id}(id=${publisher.id})}">Edit</a></td>
+                    <td><a th:href="@{/delete/{id}(id=${publisher.id})}">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <ul class="pagination pagination-sm">
+                <li th:each='i : ${#numbers.sequence(0, page.totalPages-1)}' th:class="(${i}==${page.number})? 'active' : ''" style="display:inline">
+                    <span th:if='${i}==${page.number}' th:text='${i+1}'>1</span>
+                    <a th:if='${i}!=${page.number}' th:href="@{/home2(page=${i},size=${page.size})}">
+                        <span th:text='${i+1}'></span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
-    <p><a href="/addUser">Add a new user</a></p>
-</div>
 
 </body>
 </html>
